@@ -1,3 +1,4 @@
+--[[called once, at the beginning of the game]]
 function love.load()
     button = {}
     button.x = 200
@@ -11,7 +12,8 @@ function love.load()
     myFont = love.graphics.newFont(42)
 end
 
--- game loop
+--[[game loop
+    @param dt delta time]]
 function love.update(dt)
     if gameState == true then
         if timer > 0 then
@@ -25,6 +27,7 @@ function love.update(dt)
     end
 end
 
+--[[callback function used to draw on the screen every frame]]
 function love.draw()
     if gameState == true then
         love.graphics.setColor(0, 0, 1)
@@ -36,11 +39,17 @@ function love.draw()
     love.graphics.print("Score : " .. score)
     love.graphics.print("Time : " .. math.ceil(timer), 250, 0)
 
+    -- main menu
     if gameState == false then 
         love.graphics.printf("Click anywhere to begin!", 0, love.graphics.getHeight()/2, love.graphics.getWidth(), "center")
     end
 end
 
+--[[callback function triggered when a mouse button is pressed
+    @param x the x coordinate of the button
+    @param y the y coordinate of the button
+    @param b the button clicked by the user
+    @istouch the screen touch by the user]]
 function love.mousepressed(x, y, b, istouch)
     if b == 1 and gameState == true then
         if pointDistance(button.x, button.y, love.mouse.getX(), love.mouse.getY()) < button.size then
@@ -62,7 +71,6 @@ end
     @param y1 the y coordinate of the button
     @param y2 the y coordinate of the mouse click
     @return the distance between the two points]]
-
 function pointDistance(x1, y1, x2, y2)
     return math.sqrt(((y2 - y1) ^ 2) + ((x2 - x1) ^ 2))
 end
