@@ -8,3 +8,5 @@ To check which version of LÖVE is installed run this command:
 ```
 $ love --version
 ```
+## Credits
+Sprites and other resources are from [here](https://www.udemy.com/course/lua-love/)
